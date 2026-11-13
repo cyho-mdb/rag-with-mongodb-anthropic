@@ -47,6 +47,7 @@ async function main() {
       process.exit(1);
     }
     console.log(`API server on http://${HOST}:${PORT}`);
+    console.log(`Answer model: ${config.answer.model}`);
   });
 
   // Ctrl+C (SIGINT) or SIGTERM: stop taking requests, let the ones in progress finish

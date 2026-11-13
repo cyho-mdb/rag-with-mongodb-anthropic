@@ -51,6 +51,12 @@ module.exports = function askRoutes(db) {
         throw new ApiError(502, 'llmAccessDenied',
           'The answer service refused this server\'s access. Check the API key settings.');
       }
+      // 404 from the Anthropic API: it doesn't know the model, or the key can't use it.
+      if (err instanceof Anthropic.NotFoundError) {
+        console.error(`Ask: answer model "${config.answer.model}" not found:`, err.message);
+        throw new ApiError(502, 'llmModelNotFound',
+          `The answer service doesn't know the model "${config.answer.model}". Check ANSWER_MODEL in the server's .env file.`);
+      }
       throw err;   // anything else, including a cut-off reply: 500
     }
     res.json(toApiAnswer(result));

@@ -466,6 +466,7 @@ all uploads instead".
 | 503 | `llmUnavailable` | The Anthropic API is overloaded or rate-limited. |
 | 503 | `hybridUnavailable` | Hybrid search asked, but the keyword index is missing or still building (`npm run setup`, `npm run index-status`). Vector search still works. |
 | 502 | `llmAccessDenied` | The Anthropic API, or a gateway in front of it (`ANTHROPIC_BASE_URL`), refused the server's key (401) or access (403). The server's settings need fixing; retrying won't help. |
+| 502 | `llmModelNotFound` | The Anthropic API doesn't know the answer model (404): a misspelt `ANSWER_MODEL` in `.env`, or a model the key can't use. The message names the model. Retrying won't help. |
 | 500 | `internal` | Anything else, including an LLM reply that was cut off. |
 
 The page:
@@ -480,7 +481,8 @@ The page:
   is asked; failed questions aren't saved.
 - After `uploadNotFound` or `uploadNotReady`, reloads the list (which unticks the
   upload, with a notice); after a network failure or a 5xx other than the answer
-  service's (`llmUnavailable`, `llmAccessDenied`), checks the connection.
+  service's (`llmUnavailable`, `llmAccessDenied`, `llmModelNotFound`), checks the
+  connection.
 - "How this was found" (milestone 9), on every answer and "not found" card: the search
   line names the reranking ("…then reranked by Voyage AI rerank-3 (50 candidates)").
   With `withoutRerank`, it opens with a summary ("Reranking replaced 4 of the 10

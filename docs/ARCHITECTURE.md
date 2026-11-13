@@ -109,7 +109,7 @@ Scripts and tools import from `src/`, never the reverse.
 
 | File | Purpose |
 |---|---|
-| `config.js` | Application settings: collection and search index names, search limits, "not found" thresholds (all uploads, selected uploads; cosine for vector search alone, and their own for reranking), reranking (model, candidates), hybrid search's typo tolerance, answer model, upload size and file-name limits, title search settings, the picker's facets (file types, size buckets by chunk count), scanned-PDF threshold, chunk sizes. Secrets go in `.env` instead. |
+| `config.js` | Application settings: collection and search index names, search limits, "not found" thresholds (all uploads, selected uploads; cosine for vector search alone, and their own for reranking), reranking (model, candidates), hybrid search's typo tolerance, answer model (`ANSWER_MODEL` in `.env` overrides it), upload size and file-name limits, title search settings, the picker's facets (file types, size buckets by chunk count), scanned-PDF threshold, chunk sizes. Secrets go in `.env` instead. |
 | `db.js` | Opens the MongoDB connection from `.env` (`MONGODB_URI`, `DB_NAME`). |
 | `extractors/index.js` | Picks the extractor for a file by its extension; rejects unsupported types. |
 | `extractors/text.js` | Plain text: the whole file is one section; its chunks start with a title made from the file name. Also decodes file bytes to text. |

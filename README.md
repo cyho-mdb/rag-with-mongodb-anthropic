@@ -351,7 +351,9 @@ npm run ask -- "How do I set up a proxy for Nimbus?"
 ```
 
 Each question with an answer is one LLM call, about $0.01–0.015 with Claude Sonnet
-5.5. A question stopped by the threshold costs nothing.
+5.5, the default. A question stopped by the threshold costs nothing. To answer with
+another Claude model, set `ANSWER_MODEL` in `.env` to its model ID (see
+`.env.example`); only the default has been tested.
 
 The test questions also cover two PDFs that aren't in the repository (they're
 copyrighted), so `npm run test-questions` gives different results on a fresh clone.

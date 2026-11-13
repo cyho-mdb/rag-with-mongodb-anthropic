@@ -860,7 +860,7 @@ const ASK_ERRORS = {
 
 // 5xx errors from the answer service (the LLM), not the server or the database, so
 // they don't start a connection check.
-const LLM_ERRORS = ['llmUnavailable', 'llmAccessDenied'];
+const LLM_ERRORS = ['llmUnavailable', 'llmAccessDenied', 'llmModelNotFound'];
 
 // Asks the question in the box (or `question`) of the ticked uploads, or of all uploads
 // when `all` is set ("Ask all uploads instead"). One question at a time: Ask stays

@@ -1,5 +1,6 @@
 // Application settings. Committed to git.
 // Secrets and per-machine values (connection string, database name) go in .env instead.
+// One setting here can be overridden from .env: the answer model (ANSWER_MODEL).
 
 module.exports = {
   collections: {
@@ -79,7 +80,9 @@ module.exports = {
 
   // Answers (src/answer.js). The API key is in .env (ANTHROPIC_API_KEY).
   answer: {
-    model: 'claude-sonnet-5-5',
+    // The Claude model that writes the answers. ANSWER_MODEL in .env overrides it
+    // (see .env.example); the prompt and the test runs were tuned on the default.
+    model: (process.env.ANSWER_MODEL || '').trim() || 'claude-sonnet-5-5',
     // Output cap per answer, including the model's thinking. Answers are short; this
     // only stops a runaway reply.
     maxTokens: 16000,
